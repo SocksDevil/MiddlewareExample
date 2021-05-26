@@ -6,3 +6,12 @@ Example project of the JSON-Compliant [HTTP Middleware from different protocols]
 - Java  (>=11)
 
 ## How to run
+- Run the gradle task for the server
+```shell
+./gradlew startGRPCServer
+```
+
+- Run the gradle task for the middleware
+```shell
+./gradlew run
+```
