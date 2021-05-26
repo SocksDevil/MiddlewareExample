@@ -22,7 +22,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.30'
     id "com.google.protobuf" version "0.8.15"
     id 'idea'
-
+    id 'application'
 }
 
 group 'org.example'
@@ -103,4 +103,8 @@ idea {
         sourceDirs += file("${projectDir}/src/generated/grpc")
         sourceDirs += file("${projectDir}/src/generated/grpckt")
     }
+}
+
+application{
+    mainClass = 'org.feup.lapd.middleware.GRpcExample'
 }
