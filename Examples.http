@@ -1,0 +1,21 @@
+###
+POST http://localhost:8889/convertColor
+Content-Type: application/json
+
+{
+  "colorMode": "HEX_MODE",
+  "color": {
+    "colorDef": {
+      "cmykMode": {
+        "cyan": 0.5,
+        "magenta": 0.5,
+        "yellow": 0.3,
+        "key": 0.1
+      }
+    }
+  }
+}
+
+
+###
+POST http://localhost:8889/getRandomHexColor

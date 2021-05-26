@@ -1,0 +1,81 @@
+syntax = "proto2";
+
+package com.grpc.models;
+
+option java_multiple_files = true;
+
+service ColorsService {
+
+  rpc getRandomHexColor(Void) returns (Color);
+  rpc getRandomRGBColor(Void) returns (Color);
+  rpc getRandomCMYKColor(Void) returns (Color);
+  rpc getRandomHSVColor(Void) returns (Color);
+  rpc convertColor(ColorConversionRequest) returns (ColorConversionResponse);
+  rpc generateColorPalette(ColorPaletteRequest) returns (ColorPaletteResponse);
+}
+
+message Void {
+
+}
+
+message Color {
+  message Mode {
+    oneof onemode {
+      HEX hexMode = 1;
+      RGB rgbMode = 2;
+      CMYK cmykMode = 3;
+      HSV hsvMode = 4;
+    }
+  }
+
+  required Mode colorDef = 1;
+  optional bool webSafe = 2;
+}
+
+message HEX {
+  required string code = 1;
+}
+
+message RGB {
+  required int32 red = 1;
+  required int32 green = 2;
+  required int32 blue = 3;
+}
+
+message CMYK {
+  required float cyan = 1;
+  required float magenta = 2;
+  required float yellow = 3;
+  required float key = 4;
+}
+
+message HSV {
+  required int32 hue = 1;
+  required float saturation = 2;
+  required float value = 3;
+}
+
+enum ColorMode {
+  HEX_MODE = 0;
+  RGB_MODE = 1;
+  CMYK_MODE = 2;
+  HSV_MODE = 3;
+}
+
+message ColorConversionRequest {
+  required ColorMode colorMode = 1;
+  required Color color = 2;
+}
+
+message ColorConversionResponse {
+  required ColorMode colorMode = 1;
+  required Color color = 2;
+}
+
+message ColorPaletteRequest {
+  required Color color = 1;
+}
+
+message ColorPaletteResponse {
+  repeated Color palette = 1;
+}
